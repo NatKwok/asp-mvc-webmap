@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace asp_mvc_webmap;
 
-public partial class GeocartContext : DbContext
+public partial class GeocartContext : IdentityDbContext<IdentityUser>
 {
     public GeocartContext()
     {
