@@ -1,8 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using asp_mvc_webmap.Models;
+using asp_mvc_webmap;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddEntityFrameworkNpgsql().AddDbContext<GeocartContext>(opt =>
+        opt.UseNpgsql(builder.Configuration.GetConnectionString("WebApiDatabase")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
