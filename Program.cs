@@ -1,16 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using asp_mvc_webmap.Models;
 using asp_mvc_webmap;
-
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using asp_mvc_webmap;
+
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("GeocartContextConnection") ?? throw new InvalidOperationException("Connection string 'GeocartContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("WebApiDatabase") ?? throw new InvalidOperationException("Connection string 'GeocartContextConnection' not found.");
 
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<GeocartContext>();
-builder.Services.AddDbContext<GeocartContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<GeocartContext>(options => options.UseNpgsql(connectionString));
 
 
 // Add services to the container.

@@ -27,6 +27,7 @@ public partial class GeocartContext : IdentityDbContext<IdentityUser>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.HasPostgresExtension("postgis");
 
         modelBuilder.Entity<Chaleur>(entity =>
