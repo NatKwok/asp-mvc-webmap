@@ -17,7 +17,7 @@ builder.Services.AddEntityFrameworkNpgsql().AddDbContext<GeocartContext>(opt =>
 builder.Services.AddControllers()
   .AddJsonOptions(options => {
         options.JsonSerializerOptions.Converters.Add(
-            new NetTopologySuite.IO.Converters.GeoJsonConverterFactory());
+             new NetTopologySuite.IO.Converters.GeoJsonConverterFactory());
   });
 var app = builder.Build();
 
