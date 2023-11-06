@@ -103,5 +103,6 @@ namespace asp_mvc_webmap.Controllers
         {
             return _context.Secheresses.Any(e => e.OgcFid == id);
         }
+
     }
 }

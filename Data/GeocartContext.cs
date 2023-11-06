@@ -24,7 +24,6 @@ public partial class GeocartContext : IdentityDbContext<IdentityUser>
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql("Host=localhost; Database=geocart; Username=nathanielkwok;", x => x.UseNetTopologySuite());
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
