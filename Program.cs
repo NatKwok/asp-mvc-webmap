@@ -3,7 +3,6 @@ using asp_mvc_webmap.Models;
 using asp_mvc_webmap;
 using Microsoft.AspNetCore.Identity;
 
-
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("WebApiDatabase") ?? throw new InvalidOperationException("Connection string 'GeocartContextConnection' not found.");
 
@@ -16,13 +15,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<GeocartContext>(opt =>
         opt.UseNpgsql(builder.Configuration.GetConnectionString("WebApiDatabase")));
 builder.Services.AddControllers()
-    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly) 
-    .AddNewtonsoftJson(options =>
-    {
-        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-        var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
-        options.SerializerSettings.Converters.Add(new GeometryConverter(geometryFactory));
-    });
+  .AddJsonOptions(options => {
+        options.JsonSerializerOptions.Converters.Add(
+            new NetTopologySuite.IO.Converters.GeoJsonConverterFactory());
+  });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -18,6 +18,7 @@ namespace asp_mvc_webmap.Controllers
         public SecheresseController(GeocartContext context)
         {
             _context = context;
+            
         }
 
         // GET: api/Secheresse
@@ -25,6 +26,7 @@ namespace asp_mvc_webmap.Controllers
         public async Task<ActionResult<IEnumerable<Secheress>>> GetSecheresses()
         {
             return await _context.Secheresses.ToListAsync();
+
         }
 
         // GET: api/Secheresse/5
