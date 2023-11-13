@@ -33,34 +33,16 @@
     
     $.when(chaleurs).done(function() {
 
-        var map = L.map('map').setView([45.5119, -73.6774], 11);
+            var map = L.map('map').setView([45.5119, -73.6774], 11);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 
                     }).addTo(map);
 
-            //L.geoJSON(chaleurs).addTo(map);
-
+            L.geoJSON(chaleurs.responseJSON).addTo(map);
 
     });
 
-    
-    @* var chaleurFeatures = [{
-                "type": "Feature",
-                "properties": {
-                    "ogcFid": data.ogcFid, 
-                    "chaleurcat": data.chaleurcat,
-                    "fid": data.fid,
-                    "sumShape": data.sumShape,
-                    "sumShape1": data.sumShape1
-                    },
-                "geometry": {
-                    "type": data.type,
-                    "coordinates": [[
-                        data.coordinates
-                    ]]
-                }
-            }]; *@
 
 
 </script>
